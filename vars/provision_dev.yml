@@ -1,0 +1,323 @@
+---
+###################### PHP ###########################
+
+php_version: "5.6"
+# Pass in a comma-separated list of repos to use (e.g. "remi,epel"). Used only
+# for RHEL/CentOS.
+# php_enablerepo: ""
+
+# PHP package state; use 'installed' to make sure it's installed, or 'latest' if
+# you want to upgrade or switch versions using a new repo.
+# php_packages_state: installed
+
+# Whether to install recommended packages. Used only for Debian/Ubuntu.
+# php_install_recommends: yes
+
+# Set this to false if you're not using PHP with Apache/Nginx/etc.
+# php_enable_webserver: true
+
+# PHP-FPM configuration.
+php_enable_php_fpm: true
+# php_fpm_listen: "127.0.0.1:9000"
+# php_fpm_listen_allowed_clients: "127.0.0.1"
+# php_fpm_pm_max_children: 50
+# php_fpm_pm_start_servers: 5
+# php_fpm_pm_min_spare_servers: 5
+# php_fpm_pm_max_spare_servers: 5
+
+# The executable to run when calling PHP from the command line.
+# php_executable: "php"
+
+# OpCache settings (useful for PHP >=5.5).
+# php_opcache_zend_extension: "opcache.so"
+# php_opcache_enable: "1"
+# php_opcache_enable_cli: "0"
+# php_opcache_memory_consumption: "96"
+# php_opcache_interned_strings_buffer: "16"
+# php_opcache_max_accelerated_files: "4096"
+# php_opcache_max_wasted_percentage: "5"
+# php_opcache_validate_timestamps: "1"
+# php_opcache_revalidate_path: "0"
+# php_opcache_revalidate_freq: "2"
+# php_opcache_max_file_size: "0"
+# php_opcache_blacklist_filename: ""
+
+# APCu settings.
+# php_enable_apc: true
+# php_apc_shm_size: "96M"
+# php_apc_enable_cli: "0"
+
+# If this is set to false, none of the following options will have any effect.
+# Any and all changes to /etc/php.ini will be your responsibility.
+# php_use_managed_ini: true
+
+# php_expose_php: "On"
+# php_memory_limit: "256M"
+# php_max_execution_time: "60"
+# php_max_input_time: "60"
+# php_max_input_vars: "1000"
+# php_realpath_cache_size: "32K"
+# php_upload_max_filesize: "64M"
+# php_post_max_size: "32M"
+php_date_timezone: "Europe/Paris"
+# php_allow_url_fopen: "On"
+
+# php_sendmail_path: "/usr/sbin/sendmail -t -i"
+# php_output_buffering: "4096"
+# php_short_open_tag: false
+# php_disable_functions: []
+
+# php_session_cookie_lifetime: 0
+# php_session_gc_probability: 1
+# php_session_gc_divisor: 1000
+# php_session_gc_maxlifetime: 1440
+# php_session_save_handler: files
+# php_session_save_path: ''
+
+# php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
+php_display_errors: "On"
+php_display_startup_errors: "On"
+
+# # Install PHP from source (instead of using a package manager) with these vars.
+# php_install_from_source: false
+# php_source_version: "master"
+# php_source_clone_dir: "~/php-src"
+# php_source_install_path: "/opt/php"
+# php_source_install_gmp_path: "/usr/include/x86_64-linux-gnu/gmp.h"
+# # For faster compile time: "make --jobs=X" where X is # of cores present.
+# php_source_make_command: "make"
+# php_source_configure_command: >
+#   ./configure
+#   --prefix={{ php_source_install_path }}
+#   --with-config-file-path={{ php_conf_paths | first }}
+#   --enable-mbstring
+#   --enable-zip
+#   --enable-bcmath
+#   --enable-pcntl
+#   --enable-ftp
+#   --enable-exif
+#   --enable-calendar
+#   --enable-opcache
+#   --enable-pdo
+#   --enable-sysvmsg
+#   --enable-sysvsem
+#   --enable-sysvshm
+#   --enable-wddx
+#   --with-curl
+#   --with-mcrypt
+#   --with-iconv
+#   --with-gmp
+#   --with-pspell
+#   --with-gd
+#   --with-jpeg-dir=/usr
+#   --with-png-dir=/usr
+#   --with-zlib-dir=/usr
+#   --with-xpm-dir=/usr
+#   --with-freetype-dir=/usr
+#   --enable-gd-native-ttf
+#   --enable-gd-jis-conv
+#   --with-openssl
+#   --with-pdo-mysql=/usr
+#   --with-gettext=/usr
+#   --with-zlib=/usr
+#   --with-bz2=/usr
+#   --with-recode=/usr
+#   --with-mysqli=/usr/bin/mysql_config
+
+php_packages:
+  - php5-common
+  - php5-cli
+  - php5-dev
+  - php5-fpm
+  - libpcre3-dev
+  - php5-gd
+  - php5-curl
+  - php5-imap
+  - php5-json
+  - php5-apcu
+  - libapache2-mod-php5
+php_webserver_daemon: "apache2"
+
+# Vendor-specific configuration paths on Debian/Ubuntu make my brain asplode.
+php_conf_paths:
+  - /etc/php5/fpm
+  - /etc/php5/apache2
+  - /etc/php5/cli
+
+php_extension_conf_paths:
+  - /etc/php5/fpm/conf.d
+  - /etc/php5/apache2/conf.d
+  - /etc/php5/cli/conf.d
+
+php_apc_conf_filename: 20-apcu.ini
+php_opcache_conf_filename: 05-opcache.ini
+php_fpm_daemon: php5-fpm
+php_fpm_conf_path: "/etc/php5/fpm"
+php_fpm_pool_conf_path: "{{ __php_fpm_conf_path }}/pool.d/www.conf"
+
+php_fpm_pool_user: www-data
+php_fpm_pool_group: www-data
+
+
+############################# APACHE ###################################
+# apache_enablerepo: ""
+
+# apache_listen_ip: "*"
+# apache_listen_port: 80
+# apache_listen_port_ssl: 443
+
+# apache_create_vhosts: true
+# apache_vhosts_filename: "vhosts.conf"
+
+# On Debian/Ubuntu, a default virtualhost is included in Apache's configuration.
+# Set this to `true` to remove that default.
+# apache_remove_default_vhost: false
+
+# apache_global_vhost_settings: |
+#   DirectoryIndex index.php index.html
+
+apache_vhosts:
+  # Additional properties: 'serveradmin, serveralias, extra_parameters'.
+  - servername: "vps265004.ovh.net"
+    documentroot: "/var/www/html"
+
+# apache_vhosts_ssl: []
+  # Additional properties: 'serveradmin, extra_parameters'.
+  # - servername: "local.dev",
+  #   documentroot: "/var/www/html",
+  #   certificate_file: "/path/to/certificate.crt",
+  #   certificate_key_file: "/path/to/certificate.key",
+  #   # Optional.
+  #   certificate_chain_file: "/path/to/certificate_chain.crt"
+
+# apache_ignore_missing_ssl_certificate: true
+
+# apache_ssl_protocol: "All -SSLv2 -SSLv3"
+# apache_ssl_cipher_suite: "AES256+EECDH:AES256+EDH"
+
+# Only used on Debian/Ubuntu.
+# apache_mods_enabled:
+#   - rewrite.load
+#   - ssl.load
+# apache_mods_disabled: []
+
+# Set initial apache state. Recommended values: `started` or `stopped`
+# apache_state: started
+
+
+
+
+############################# SQL ###################################
+
+# mysql_user_home: /root
+# mysql_root_username: root
+# mysql_root_password: root
+
+# Set this to `yes` to forcibly update the root password.
+# mysql_root_password_update: no
+
+# mysql_enabled_on_startup: yes
+
+# update my.cnf. each time role is run? yes | no
+# overwrite_global_mycnf: yes
+
+# The following variables have a default value depending on operating system.
+# mysql_config_file: /etc/my.cnf
+# mysql_config_include_dir: /etc/my.cnf.d
+
+# Pass in a comma-separated list of repos to use (e.g. "remi,epel"). Used only
+# for RedHat systems (and derivatives).
+# mysql_enablerepo: ""
+
+# Define a custom list of packages to install; if none provided, the default
+# package list from vars/[OS-family].yml will be used.
+# mysql_packages:
+#   - mysql
+#   - mysql-server
+#   - MySQL-python
+
+# MySQL connection settings.
+# mysql_port: "3306"
+# mysql_bind_address: '0.0.0.0'
+# mysql_skip_name_resolve: no
+# mysql_datadir: /var/lib/mysql
+# The following variables have a default value depending on operating system.
+# mysql_pid_file: /var/run/mysqld/mysqld.pid
+# mysql_socket: /var/lib/mysql/mysql.sock
+
+# Slow query log settings.
+# mysql_slow_query_log_enabled: no
+# mysql_slow_query_time: "2"
+# The following variable has a default value depending on operating system.
+# mysql_slow_query_log_file: /var/log/mysql-slow.log
+
+# Memory settings (default values optimized ~512MB RAM).
+# mysql_key_buffer_size: "256M"
+# mysql_max_allowed_packet: "64M"
+# mysql_table_open_cache: "256"
+# mysql_sort_buffer_size: "1M"
+# mysql_read_buffer_size: "1M"
+# mysql_read_rnd_buffer_size: "4M"
+# mysql_myisam_sort_buffer_size: "64M"
+# mysql_thread_cache_size: "8"
+# mysql_query_cache_size: "16M"
+# mysql_query_cache_limit: "1M"
+# mysql_max_connections: "151"
+# mysql_tmp_table_size: "16M"
+# mysql_max_heap_table_size: "16M"
+
+# Other settings.
+# mysql_lower_case_table_names: "0"
+# mysql_wait_timeout: "28800"
+
+# InnoDB settings.
+# mysql_innodb_file_per_table: "1"
+# Set .._buffer_pool_size up to 80% of RAM but beware of setting too high.
+# mysql_innodb_buffer_pool_size: "256M"
+# Set .._log_file_size to 25% of buffer pool size.
+# mysql_innodb_log_file_size: "64M"
+# mysql_innodb_log_buffer_size: "8M"
+# mysql_innodb_flush_log_at_trx_commit: "1"
+# mysql_innodb_lock_wait_timeout: "50"
+
+# These settings require MySQL > 5.5.
+# mysql_innodb_large_prefix: "1"
+# mysql_innodb_file_format: "barracuda"
+
+# mysqldump settings.
+# mysql_mysqldump_max_allowed_packet: "64M"
+
+# Logging settings.
+# mysql_log: ""
+# The following variables have a default value depending on operating system.
+# mysql_log_error: /var/log/mysql.err
+# mysql_syslog_tag: mysql
+
+# mysql_config_include_files: []
+#  - src: path/relative/to/playbook/file.cnf
+#  - { src: path/relative/to/playbook/anotherfile.cnf, force: yes }
+
+# Databases.
+# mysql_databases: []
+#   - name: example
+#     collation: utf8_general_ci
+#     encoding: utf8
+#     replicate: 1
+
+# Users.
+# mysql_users: []
+#   - name: example
+#     host: 127.0.0.1
+#     password: secret
+#     priv: *.*:USAGE
+
+# Replication settings (replication is only enabled if master/user have values).
+# mysql_server_id: "1"
+# mysql_max_binlog_size: "100M"
+# mysql_binlog_format: "ROW"
+# mysql_expire_logs_days: "10"
+# mysql_replication_role: ''
+# mysql_replication_master: ''
+# Same keys as `mysql_users` above.
+# mysql_replication_user: []
+

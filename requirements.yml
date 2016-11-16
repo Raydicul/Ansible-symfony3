@@ -1,0 +1,10 @@
+- src: geerlingguy.php
+
+- src: geerlingguy.apache
+
+- src: geerlingguy.mysql
+
+- src: geerlingguy.git
+
+- src: servergrove.symfony2
+

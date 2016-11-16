@@ -1,0 +1,16 @@
+---
+symfony_project_root: /var/www
+symfony_project_name: IP-project
+symfony_project_composer_path: /var/www/shared/composer.phar
+symfony_project_repo: "https://github.com/thefellowshipofIPSSI/IP-project.git"
+symfony_project_env: dev
+
+symfony_project_console_opts: ''
+symfony_project_keep_releases: 5
+
+symfony_project_branch: "flo"
+symfony_project_php_path: php
+symfony_project_keep_releases: 5
+
+symfony_project_manage_composer: True
+symfony_project_composer_opts: ' --optimize-autoloader'

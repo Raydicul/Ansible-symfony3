@@ -1,0 +1,10 @@
+---
+- name: Deploiement d'une app symfony via un depot git
+  hosts: vps
+  remote_user: root
+  vars_files:
+    - vars/deploy.yml
+
+  roles:
+    - { role: servergrove.symfony2 }
+...

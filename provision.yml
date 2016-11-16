@@ -1,0 +1,13 @@
+---
+- name: Installation du serveur web
+  hosts: vps
+  remote_user: root
+  vars_files:
+    - vars/provision.yml
+
+  roles:
+    - { role: geerlingguy.git }
+    - { role: geerlingguy.php }
+    - { role: geerlingguy.apache }
+    - { role: geerlingguy.mysql }
+...
