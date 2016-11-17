@@ -7,4 +7,5 @@
 
   roles:
     - { role: servergrove.symfony2 }
+    - { role: file_permissions } 
 ...

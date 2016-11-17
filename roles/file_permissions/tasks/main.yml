@@ -1,0 +1,16 @@
+---
+- name: Make var directory tree writable
+  file:
+    path: "{{ symfony_current_release_dir }}/var/"
+    owner: www-data
+    group: www-data
+    mode: 0755
+    recurse: yes
+
+- name: Make shared directory tree writable
+  file:
+    path: "{{ symfony_project_root }}/shared/"
+    owner: www-data
+    group: www-data
+    mode: 0755
+    recurse: yes

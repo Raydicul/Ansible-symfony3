@@ -125,8 +125,12 @@ php_display_startup_errors: "On"
 #   --with-mysqli=/usr/bin/mysql_config
 
 php_packages:
+  - php5
   - php5-common
   - php5-cli
+  - php5-intl
+  - php5-cgi
+  - php5-mcrypt
   - php5-dev
   - php5-fpm
   - libpcre3-dev
@@ -136,6 +140,7 @@ php_packages:
   - php5-json
   - php5-apcu
   - libapache2-mod-php5
+  - php5-mysql
 php_webserver_daemon: "apache2"
 
 # Vendor-specific configuration paths on Debian/Ubuntu make my brain asplode.
@@ -167,19 +172,19 @@ php_fpm_pool_group: www-data
 # apache_listen_port_ssl: 443
 
 # apache_create_vhosts: true
-# apache_vhosts_filename: "vhosts.conf"
+apache_vhosts_filename: "ip-project.conf"
 
 # On Debian/Ubuntu, a default virtualhost is included in Apache's configuration.
 # Set this to `true` to remove that default.
-# apache_remove_default_vhost: false
+apache_remove_default_vhost: true
 
-# apache_global_vhost_settings: |
-#   DirectoryIndex index.php index.html
+apache_global_vhost_settings: |
+  DirectoryIndex app_dev.php app.php
 
 apache_vhosts:
   # Additional properties: 'serveradmin, serveralias, extra_parameters'.
   - servername: "vps265004.ovh.net"
-    documentroot: "/var/www/html"
+    documentroot: "/var/www/current/web"
 
 # apache_vhosts_ssl: []
   # Additional properties: 'serveradmin, extra_parameters'.
@@ -298,18 +303,18 @@ apache_vhosts:
 #  - { src: path/relative/to/playbook/anotherfile.cnf, force: yes }
 
 # Databases.
-# mysql_databases: []
-#   - name: example
-#     collation: utf8_general_ci
-#     encoding: utf8
-#     replicate: 1
+mysql_databases:
+  - name: ipssi
+    collation: utf8_general_ci
+    encoding: utf8
+    replicate: 1
 
 # Users.
-# mysql_users: []
-#   - name: example
-#     host: 127.0.0.1
-#     password: secret
-#     priv: *.*:USAGE
+mysql_users:
+  - name: homestead
+    host: 127.0.0.1
+    password: secret
+    priv: "ipssi.*:ALL"
 
 # Replication settings (replication is only enabled if master/user have values).
 # mysql_server_id: "1"
