@@ -18,6 +18,8 @@ Install ansible-galaxy requirements
 ```
 $ ansible-galaxy install -r requirements.yml
 ```
+
+
 ### Server provision
 
 Edit :
@@ -29,6 +31,7 @@ Run provision script
 ```
 $ ansible-playbook -i hosts provision.yml
 ```
+
 
 ### Symfony3 deployment
 
