@@ -1,14 +1,14 @@
 # Provision Debian 8 - Deploy Symfony3 app
 
 
-The provision.yml script will install :
+The `provision.yml` script will install :
   - php 5.6
   - apache2
   - mysql
   - git
   
   
-The deploy.yml script will deploy a symfony3 application to /var/www from a git repository
+The deploy.yml script will deploy a symfony3 application to `/var/www` from a git repository
 
 
 ## Installation
@@ -23,9 +23,9 @@ $ ansible-galaxy install -r requirements.yml
 ### Server provision
 
 Edit :
-  - hosts file to define server connection
-  - /vars/provision.yml (/vars/provision_dev.yml for dev)
-  - provision.yml to specify the vars/ file to use
+  - `hosts` file to define server connection
+  - `/vars/provision.yml` (`/vars/provision_dev.yml` for dev)
+  - `provision.yml` to specify the `vars/` file to use
 
 Run provision script
 ```
@@ -36,8 +36,8 @@ $ ansible-playbook -i hosts provision.yml
 ### Symfony3 deployment
 
 Edit :
-  - hosts file to define server connection
-  - /vars/deploy.yml
+  - `hosts` file to define server connection
+  - `/vars/deploy.yml`
 
 Run deploy script
 ```
