@@ -24,7 +24,7 @@ $ ansible-galaxy install -r requirements.yml
 
 Edit :
   - hosts file to define server connection
-  - /vars/provision.yml (/vars/provision_dev.yml)
+  - /vars/provision.yml (/vars/provision_dev.yml for dev)
   - provision.yml to specify the vars/ file to use
 
 Run provision script
