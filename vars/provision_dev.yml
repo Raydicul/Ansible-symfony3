@@ -1,7 +1,7 @@
 ---
 ###################### PHP ###########################
 
-php_version: "5.6"
+# php_version: "5.6"
 # Pass in a comma-separated list of repos to use (e.g. "remi,epel"). Used only
 # for RHEL/CentOS.
 # php_enablerepo: ""
@@ -125,43 +125,61 @@ php_display_startup_errors: "On"
 #   --with-mysqli=/usr/bin/mysql_config
 
 php_packages:
-  - php5
-  - php5-common
-  - php5-cli
-  - php5-intl
-  - php5-cgi
-  - php5-mcrypt
-  - php5-dev
-  - php5-fpm
+  - php7.0-common
+  - php7.0-cli
+  - php7.0-dev
+  - php7.0-fpm
   - libpcre3-dev
-  - php5-gd
-  - php5-curl
-  - php5-imap
-  - php5-json
-  - php5-apcu
-  - libapache2-mod-php5
-  - php5-mysql
-php_webserver_daemon: "apache2"
+  - php7.0-gd
+  - php7.0-curl
+  - php7.0-imap
+  - php7.0-json
+  - php7.0-opcache
+  - php7.0-xml
+  - php7.0-mbstring
+  - php-sqlite3
+  - php7.0-apcu
+
+#  - php5
+#  - php5-common
+#  - php5-cli
+#  - php5-intl
+#  - php5-cgi
+#  - php5-mcrypt
+#  - php5-dev
+#  - php5-fpm
+#  - libpcre3-dev
+#  - php5-gd
+#  - php5-curl
+#  - php5-imap
+#  - php5-json
+#  - php5-apcu
+#  - libapache2-mod-php5
+#  - php5-mysql
+# php_webserver_daemon: "apache2"
+
+php_packages_extra:
+  - libapache2-mod-php7.0
 
 # Vendor-specific configuration paths on Debian/Ubuntu make my brain asplode.
-php_conf_paths:
-  - /etc/php5/fpm
-  - /etc/php5/apache2
-  - /etc/php5/cli
+# php_conf_paths:
+#  - /etc/php5/fpm
+#  - /etc/php5/apache2
+#  - /etc/php5/cli
 
-php_extension_conf_paths:
-  - /etc/php5/fpm/conf.d
-  - /etc/php5/apache2/conf.d
-  - /etc/php5/cli/conf.d
+# php_extension_conf_paths:
+#  - /etc/php5/fpm/conf.d
+#  - /etc/php5/apache2/conf.d
+#  - /etc/php5/cli/conf.d
 
-php_apc_conf_filename: 20-apcu.ini
-php_opcache_conf_filename: 05-opcache.ini
-php_fpm_daemon: php5-fpm
-php_fpm_conf_path: "/etc/php5/fpm"
-php_fpm_pool_conf_path: "{{ __php_fpm_conf_path }}/pool.d/www.conf"
+# php_apc_conf_filename: 20-apcu.ini
+# php_opcache_conf_filename: 05-opcache.ini
+# php_fpm_daemon: php5-fpm
+# php_fpm_conf_path: "/etc/php5/fpm"
+# php_fpm_pool_conf_path: "{{ __php_fpm_conf_path }}/pool.d/www.conf"
 
-php_fpm_pool_user: www-data
-php_fpm_pool_group: www-data
+# php_fpm_pool_user: www-data
+# php_fpm_pool_group: www-data
 
 
 ############################# APACHE ###################################
@@ -179,11 +197,12 @@ apache_vhosts_filename: "ip-project.conf"
 apache_remove_default_vhost: true
 
 apache_global_vhost_settings: |
-  DirectoryIndex app_dev.php app.php
+  DirectoryIndex app.php app_dev.php
 
 apache_vhosts:
   # Additional properties: 'serveradmin, serveralias, extra_parameters'.
   - servername: "vps265004.ovh.net"
+    serveradmin: "florian.billot@gmail.com"
     documentroot: "/var/www/current/web"
 
 # apache_vhosts_ssl: []

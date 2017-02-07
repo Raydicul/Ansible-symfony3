@@ -2,11 +2,11 @@
 # necessary project vars
 #Path where application will be deployed on server.
 symfony_project_root: /var/www
-symfony_project_name: IP-project
+symfony_project_name: bizidil
 #path where composer.phar will be stored (e.g. project_root/shared)
 symfony_project_composer_path: /var/www/shared/composer.phar
 #URL of git repository.
-symfony_project_repo: "https://github.com/thefellowshipofIPSSI/IP-project.git"
+symfony_project_repo: https://github.com/thefellowshipofIPSSI/IP-project.git
 symfony_project_env: "dev"
 
 
@@ -17,7 +17,7 @@ symfony_project_env: "dev"
 # symfony_project_post_live_switch_tasks: after live symlink is switched
 
 # git branch, commit hash or version tag to deploy - defaults to master
-symfony_project_branch: "flo"
+symfony_project_branch: "develop"
 symfony_project_php_path: php
 symfony_project_php_options: ""
 symfony_project_keep_releases: 5
@@ -31,7 +31,8 @@ symfony_project_console_opts: ''
 symfony_project_console_command: 'bin/console' # sf >= 3.0 bin/console
 # symfony_project_config_dir: 'app/config' # symfony configuration dir
 symfony_project_parameters_file: parameters.yml # optional fixed parameters file in shared
-symfony_project_cache_command: cache:warmup
+symfony_project_enable_cache_warmup: False
+# symfony_project_cache_command: cache:warmup
 
 symfony_project_manage_composer: True
 #prod
@@ -43,14 +44,21 @@ symfony_project_composer_run_install: True
 
 # symfony_project_enable_cache_warmup: True warmup symfony cache, check out cache command!
 # symfony_project_fire_schema_update: False # rund mongodb schema update if installed
-# symfony_project_fire_migrations: run doctrine migrations, if installed
-# symfony_project_symlink_assets: run assets:create with symlink options
-
+symfony_project_fire_migrations: True
+symfony_project_symlink_assets: True
 
 symfony_project_shared_folders: # folders to be linked from shared directory to release dir
   - {name: logs, src: var/logs, path: var/logs}
   - {name: sessions, src: var/sessions, path: var/sessions}
+  - {name: uploads, src: web/uploads, path: web/uploads}
+
+symfony_project_post_folder_creation_tasks: "{{playbook_dir}}/hooks/post_folder_creation.yml"
 
 # ensured to be present
 symfony_project_managed_folders: # folders to be created/checked in release dir
   - {name: cache, path: var/cache}
+
+# vars parameters
+bdd_name: ipssi
+bdd_user: homestead
+bdd_password: secret

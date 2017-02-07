@@ -2,13 +2,13 @@
 
 
 The `provision.yml` script will install :
-  - php 5.6
+  - php 7.0
   - apache2
   - mysql
   - git
   
   
-The deploy.yml script will deploy a symfony3 application to `/var/www` from a git repository
+The deploy.yml script will deploy a symfony3 application to `/var/www` from a git repository in a Capifony style
 
 
 ## Installation
@@ -21,6 +21,19 @@ $ ansible-galaxy install -r requirements.yml
 
 
 ### Server provision
+
+If debian : https://www.cyberciti.biz/faq/installing-php-7-on-debian-linux-8-jessie-wheezy-using-apt-get/
+
+```
+$ sudo -s
+$ echo 'deb http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list
+$ echo 'deb-src http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list
+
+$ cd /tmp
+$ wget https://www.dotdeb.org/dotdeb.gpg
+$ sudo apt-key add dotdeb.gpg
+$ rm dotdeb.gpg
+```
 
 Edit :
   - `hosts` file to define server connection

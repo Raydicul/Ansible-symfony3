@@ -1,2 +1,2 @@
 [vps]
-***.***.***.*** ansible_user=***** ansible_ssh_pass=*****
+vps265004.ovh.net ansible_user=root ansible_ssh_pass="iC2iKyyW"
