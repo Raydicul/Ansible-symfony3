@@ -139,6 +139,7 @@ php_packages:
   - php7.0-mbstring
   - php-sqlite3
   - php7.0-apcu
+  - php7.0-mysql
 
 #  - php5
 #  - php5-common
