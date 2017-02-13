@@ -8,8 +8,13 @@ The `provision.yml` script will install :
   - git
   
   
-The deploy.yml script will deploy a symfony3 application to `/var/www` from a git repository in a Capifony style
+The `deploy.yml` script will deploy a symfony3 application to `/var/www` from a git repository in a Capifony style
 
+## Requirements
+
+
+  - Ssh access to a server with Debian 8 Jessie
+  - Ansible
 
 ## Installation
 
@@ -22,7 +27,8 @@ $ ansible-galaxy install -r requirements.yml
 
 ### Server provision
 
-If debian : https://www.cyberciti.biz/faq/installing-php-7-on-debian-linux-8-jessie-wheezy-using-apt-get/
+
+Update Debian : https://www.cyberciti.biz/faq/installing-php-7-on-debian-linux-8-jessie-wheezy-using-apt-get/
 
 ```
 $ sudo -s
@@ -47,6 +53,7 @@ $ ansible-playbook -i hosts provision.yml
 
 
 ### Symfony3 deployment
+
 
 Edit :
   - `hosts` file to define server connection
